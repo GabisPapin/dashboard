@@ -16,7 +16,7 @@ const ThemeContext = createContext({} as IThemeContextData);
 
 export const useAppThemeContext = () => {
   return useContext(ThemeContext);
-}
+};
 
 export const AppThemeProvider = ({ children }: IPropsChildren) => {
   const [themeName, setThemeName] = useState<'light' | 'dark'>('light');
@@ -39,5 +39,5 @@ export const AppThemeProvider = ({ children }: IPropsChildren) => {
         </Box>
       </ThemeProvider>
     </ThemeContext.Provider>
-  )
-}
+  );
+};
