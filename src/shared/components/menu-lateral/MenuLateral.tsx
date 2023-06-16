@@ -1,7 +1,7 @@
 import { Drawer, useTheme, Avatar, Divider, List, ListItemButton, ListItemIcon, ListItemText, Icon, useMediaQuery } from '@mui/material';
 import { Box } from '@mui/system';
 import { blue } from '@mui/material/colors';
-import { useDrawerContext } from '../../contexts';
+import { useAppThemeContext, useDrawerContext } from '../../contexts';
 import { useMatch, useNavigate, useResolvedPath } from 'react-router-dom';
 
 interface IPropsChildren {
@@ -41,6 +41,7 @@ export const MenuLateral = ({ children }: IPropsChildren) => {
   const smDown = useMediaQuery(theme.breakpoints.down('sm'));
 
   const { isDrawerOpen, toggleDrawerOpen, drawerOptions } = useDrawerContext();
+  const { toggleTheme } = useAppThemeContext();
 
   return (
     <>
@@ -57,7 +58,7 @@ export const MenuLateral = ({ children }: IPropsChildren) => {
           <Divider />
 
           <Box flex={1}>
-            <List component="nav" aria-label="main mailbox folders">
+            <List component="nav">
               {drawerOptions.map(drawerOptions => (
                 <ListItemLink
                   to={drawerOptions.path}
@@ -69,6 +70,17 @@ export const MenuLateral = ({ children }: IPropsChildren) => {
               ))
 
               }
+            </List>
+          </Box>
+
+          <Box>
+            <List component="nav">
+              <ListItemButton onClick={toggleTheme}>
+                <ListItemIcon>
+                  <Icon>dark_mode</Icon>
+                </ListItemIcon>
+                <ListItemText primary="Alternar tema" />
+              </ListItemButton>
             </List>
           </Box>
         </Box>
